@@ -1,0 +1,101 @@
+Cloud based smart healthcare monitoring system
+Introduction:
+The cloud-based smart healthcare monitoring system is a web-based application that enables healthcare providers to remotely monitor patients' vital signs and health status in real-time. The system uses a combination of wearable devices, mobile apps, and cloud-based infrastructure to collect, transmit, and analyze patient data.
+Project objectives:
+* Provide real-time health monitoring for patients.
+* Enable remote access to patient health data.
+* Automate alert generation in case of critical health conditions.
+* Improve healthcare decision-making with data analytics.
+* Ensure data security and privacy.
+System Architecture
+* Wearable sensors and medical devices collect patient vitals.
+* Microcontroller Unit (MCU): Processes data from sensors and sends it to the cloud.
+* Cloud Server: Stores and analyzes health data.
+* Web/Mobile Application: Displays real-time health information and alerts.
+* Doctor's Dashboard: Allows healthcare providers to monitor patients remotely.
+Features and Functionalities
+Patient Module:
+* Patient Registration & Login
+* Collection of Patient Data
+* Appointment Scheduling
+* Automatic Token and Patient Name Announcement
+Doctor & Staff Module:
+           Doctor & Staff Login
+           Medical History Storage
+           Doctor Schedule Management
+Hospital Management Module:
+* Hospital Stock Management
+* Billing System
+Software Requirements
+Backend 
+  - Python for API development  
+  - PostgreSQL for database management  
+  - HTTP protocols for sensor data communication  
+  - AWS SNS for real-time notifications  
+  - Pandas for data processing and analytics  
+Frontend
+             - HTML, CSS, JavaScript 
+Cloud Services
+             - AWS for hosting, storage, and computing  
+  - AWS for event-driven automation  
+  - AWS S3 for storing reports and records  
+  - Firebase for real-time database and notifications  
+API Endpoints (Flask RESTful)
+A. Authentication APIs
+1. Register User (POST /api/auth/register)
+    Registers a new user (patient, doctor, or staff).
+B. Patient APIs
+1. Get All Patients (GET /api/patients)
+2. Get Patient by ID (GET /api/patients/{id})
+3. Update Patient Details (PUT /api/patients/{id})
+4. Delete Patient (DELETE /api/patients/{id})
+C. Doctor APIs
+1. Get All Doctors (GET /api/doctors)
+2. Get Doctor by ID (GET /api/doctors/{id})
+3. Update Doctor Profile (PUT /api/doctors/{id})
+4. Delete Doctor (DELETE /api/doctors/{id})
+D. Staff APIs
+1. Get All Staff (GET /api/staff)
+2. Get Staff Member by ID (GET /api/staff/{id})
+3. Update Staff Profile (PUT /api/staff/{id})
+4. Delete Staff Member (DELETE /api/staff/{id})
+E. Appointment APIs
+1. Schedule Appointment (POST /api/appointments)
+2. Get All Appointments (GET /api/appointments)
+3. Get Appointment by ID (GET /api/appointments/{id})
+4. Cancel Appointment (PUT /api/appointments/{id}/cancel)
+
+F. Billing & Payment APIs
+1. Generate Bill (POST /api/billing)
+2. Get Bill by Patient ID (GET /api/billing/{patient_id})
+3. Process Payment (POST /api/billing/pay/{billing_id})
+4. Get All Transactions (GET /api/billing/transactions)
+
+User Tables
+Patients Table
+Column NameData TypeDescriptionidINT (PK)Unique Patient IDnameVARCHARPatient NameemailVARCHAR (UNIQUE)Patient EmailpasswordVARCHARHashed PasswordphoneVARCHARContact NumberaddressTEXTAddress
+Doctors Table
+Column NameData TypeDescriptionidINT (PK)Unique Doctor IDnameVARCHARDoctor NameemailVARCHAR (UNIQUE)Doctor EmailpasswordVARCHARHashed PasswordphoneVARCHARContact NumberaddressTEXTAddress
+
+
+
+
+
+Staff Table
+Column NameData TypeDescriptionidINT (PK)Unique Staff IDnameVARCHARStaff NameemailVARCHAR (UNIQUE)Staff EmailpasswordVARCHARHashed PasswordphoneVARCHARContact NumberaddressTEXTAddress
+
+Medical Data Table
+Patient Medical Data
+Column NameData TypeDescriptionidINT (PK)Unique Record IDpatient_idINT (FK)References Patients(id)heart_rateINTBPM Measurementblood_pressureVARCHARSystolic/DiastolictemperatureFLOATBody Temperature (°C)timestampTIMESTAMPRecorded Time
+Doctor Schedule Table
+Column NameData TypeDescriptionidINT (PK)Unique Schedule IDdoctor_idINT (FK)References Doctors(id)day_of_weekVARCHAR(Monday-Sunday)start_timeTIMEShift Start Timeend_timeTIMEShift End Time
+Appointments & Scheduling
+Appointments Table
+Column NameData TypeDescriptionidINT (PK)Unique Appointment IDpatient_idINT (FK)References Patients(id)doctor_idINT (FK)References Doctors(id)dateDATEAppointment DatetimeTIMEAppointment Timetoken_numberINTQueue Token NumberstatusVARCHARPending/Confirmed/Completed/Cancelled
+Hospital Management
+Hospital Stock Table
+Column NameData TypeDescriptionidINT (PK)Unique Item IDitem_nameVARCHARName of ItemquantityINTNumber in Stockexpiry_dateDATEExpiration Date
+Billing Table
+Column NameData TypeDescriptionidINT (PK)Unique Bill IDpatient_idINT (FK)References Patients(id)total_amountDECIMALTotal Bill AmountstatusVARCHARPaid/Pending/Cancelledpayment_methodVARCHARCash/Card/Online
+
+
